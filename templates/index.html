@@ -93,8 +93,10 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sale</h6>
-                        <a class="collapse-item" href="utilities-color.html">Add Sale</a>
-                        <a class="collapse-item" href="utilities-border.html">Search Sale</a>
+                        
+                        <a class="collapse-item" href="{% url 'add_invoice' %}">Add Sale</a>
+                        
+                        <a class="collapse-item" href="{% url 'list_invoice' %}">Search Sale</a>
                        
                     </div>
                 </div>

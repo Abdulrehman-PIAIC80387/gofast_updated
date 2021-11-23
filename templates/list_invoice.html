@@ -34,26 +34,36 @@
 		</div>
 	<br>
 
-	<table class='table'>
+	<table class='table' style="font-size: 12px;">
         <thead>
           <tr>
-            <th>COUNT</th>
-            <th>DATE</th>
-            <th>CUSTOMER NAME</th>
-            <th>INVOICE NUMBER</th>
-            <th>AMOUNT</th>
-			<th>Update</th>
+            <th>Invoice Number</th>
+            <th>Custumer Name</th>
+            <th>Sale Name</th>
+			<th>Sale Price</th>
+			<th>Purchase </th>
+			<th>Purchase Price</th>
+			<th>Profit</th>
+			<th>Received Amount</th>
+			<th>Pending Amount</th>
+            <th>Actions/Alterations</th>
+			
           </tr>
         </thead>
       {% for instance in queryset %}
           <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{instance.invoice_date}}</td>
-            <td>{{instance.name}}</td>
             <td>{{instance.invoice_number}}</td>
-            <td>{{instance.total}}</td>
+            <td>{{instance.custumer_name}}</td>
+            <td>{{instance.service_name}}</td>
+            <td>{{instance.sale_price}}</td>
+            <td>{{instance.purchase}}</td>
+			<td>{{instance.purchase_price}}</td>
+			<td>{{instance.profit}}</td>
+			<td>{{instance.received}}</td>
+			<td>{{instance.pending}}</td>
 			<td type = button  style=" background-color: blue; border-radius: 10px;"><a style="color: black; font-weight: bolder;   "href="{% url 'update_invoice' instance.id %}">Update</a></td>
 			<td type = button  style="background-color: brown; border-radius: 10px;"><a style="color:black; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_invoice' instance.id %}">Delete</a></td>
+			<td type = button  style="background-color:green; border-radius: 10px;"><a style="color:black; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_invoice' instance.id %}">Print</a></td>
           </tr>
       {% endfor %}
     </table>
