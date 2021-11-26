@@ -8,6 +8,22 @@
 	
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
+<script>
+  function mult(){
+
+	var sale_get = document.getElementById('sale_price').value;
+        var purchase_get = document.getElementById('purchase_price').value;
+
+
+	  profit = sale_get-purchase_get;
+	  document.getElementById('profit_price').value=profit;
+
+  }
+
+
+</script>
+
+
 </head>
 <body  id="page-top"> 
 	<div class="container-fluid">
@@ -23,31 +39,36 @@
 					  </div>
 					  <div class="form-group col-md-6">
 						{{ form.purchase|as_crispy_field }}
+						<div id="purchase_price" onkeyup="mult(this.purchase)">
 						{{ form.purchase_price|as_crispy_field }}
+					</div>
 					  </div>
 					</div>
 					<div class="form-row">
 					  <div class="form-group col-md-6">
+						<div id="sale_price" onkeyup="mult(this.sale)">
 						{{ form.sale_price|as_crispy_field }}
-						
+						</div>
+						{{ form.pending|as_crispy_field }}
 						
 					  </div>
 					  <div class="form-group col-md-6">
 						{{ form.custumer_name|as_crispy_field }}
+						{{ form.phone|as_crispy_field }}
 					  </div>
 					  <div class="form-row">
-						<div class="form-group col-md-6">
-
-						  {{ form.pending|as_crispy_field }}
-						</div>
-					  <div class="form-group col-md-2">
+						
+					  <div class="form-group col-md-4">
+						<div id="profit_price" onkeyup="mult()" >
 						{{ form.profit|as_crispy_field }}
+						</div>
 					  </div>
-					  <div class="form-group col-md-2">
+					  <div class="form-group col-md-4">
 						{{ form.Destination|as_crispy_field }}
 					  </div>
-					  <div class="form-group col-md-2">
+					  <div class="form-group col-md-4">
 						{{ form.received|as_crispy_field }}
+						
 					  </div>
 					</div>
 	

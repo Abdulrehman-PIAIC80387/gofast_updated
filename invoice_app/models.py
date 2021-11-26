@@ -20,6 +20,7 @@ class Invoice(models.Model):
 	travel_date = models.DateTimeField(auto_now_add=True, auto_now=False,null=True)
 	received = models.IntegerField('Received', default=0, blank=True, null=True)
 	pending = models.IntegerField('Pending ', default=0, blank=True, null=True)
+	phone = models.IntegerField('Phone number', default='0', blank=True, null=True)
 
 	
 	def __str__(self):

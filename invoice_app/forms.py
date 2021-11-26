@@ -6,7 +6,7 @@ class InvoiceForm(forms.ModelForm):
 		model = Invoice
 		fields = ['service_name', 'purchase','purchase_price', 'sale_price',
 				'profit', 'Destination', 'received',
-				'pending','invoice_number','custumer_name'
+				'pending','invoice_number','custumer_name','phone'
 				]
 	def clean_invoice_number(self):
 		invoice_number = self.cleaned_data.get('invoice_number')
@@ -27,7 +27,7 @@ class InvoiceUpdateForm(forms.ModelForm):
 		model = Invoice
 		fields = ['service_name', 'purchase','purchase_price', 'sale_price',
 				'profit', 'Destination', 'received',
-				'pending','invoice_number','custumer_name'
+				'pending','invoice_number','custumer_name','phone'
 				]
 
 class services_form(forms.ModelForm):
