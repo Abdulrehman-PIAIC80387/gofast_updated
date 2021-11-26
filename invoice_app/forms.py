@@ -1,5 +1,5 @@
 from django import forms
-from .models import Invoice, services
+from .models import Expense, Invoice, services
 
 class InvoiceForm(forms.ModelForm):
 	class Meta:
@@ -37,3 +37,24 @@ class services_form(forms.ModelForm):
 
 
 
+class ExpenseForm(forms.ModelForm):
+	class Meta:
+		model = Expense
+		fields = ['expense_number','amount','expense_name'
+				]
+	def clean_Expense_number(self):
+		expense_number = self.cleaned_data.get('expense_number')
+		if not expense_number:
+			raise forms.ValidationError('This field is required')
+
+
+class ExpenseUpdateForm(forms.ModelForm):
+	class Meta:
+		model = Expense
+		fields = ['expense_number','amount','expense_name'
+				]
+
+class ExpenseSearchForm(forms.ModelForm):
+	class Meta:
+		model = Expense
+		fields = ['expense_number']

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import InvoiceForm,InvoiceSearchForm,InvoiceUpdateForm,services_form
+from .forms import ExpenseForm, ExpenseSearchForm, ExpenseUpdateForm, InvoiceForm,InvoiceSearchForm,InvoiceUpdateForm,services_form
 from .models import *
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -98,3 +98,67 @@ def delete_service(request, pk):
 		queryset.delete()
 		return redirect('/delete_invoice')
 	return render(request, 'buttons.html')
+
+
+
+
+def add_expense(request):
+	form = ExpenseForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+		messages.success(request, 'Successfully Saved')
+		return redirect('/list_expense')
+	context = {
+		"form": form,
+		"title": "New Expense",
+	}
+	return render(request, "utilities-color.html", context)
+
+
+
+
+def list_expense(request):
+	title = 'List of Invoices'
+	queryset = Expense.objects.all()
+	form = ExpenseSearchForm(request.POST or None)
+	
+	context = {
+		"title": title,
+		"queryset": queryset,
+		"form":form
+	}
+
+	if request.method == 'POST':
+		queryset = Expense.objects.filter(expense_number__icontains=form['expense_number'].value(),)
+
+										
+		context = {
+		"form": form,
+		"title": title,
+		"queryset": queryset,
+	}
+	return render(request, "utilities-other.html", context)    
+
+
+def update_Expense(request, pk):
+	queryset = Expense.objects.get(id=pk)
+	form = ExpenseUpdateForm(instance=queryset)
+	if request.method == 'POST':
+		form = ExpenseUpdateForm(request.POST, instance=queryset)
+		if form.is_valid():
+			form.save()
+			return redirect('/list_expense')
+
+	context = {
+		'form':form
+	}
+	return render(request, 'utilities-color.html', context)
+
+
+def delete_Expense(request, pk):
+	queryset = Expense.objects.get(id=pk)
+	if request.method == 'POST':
+		queryset.delete()
+		return redirect('/list_expense')
+	return render(request, 'delete_invoice.html')
+

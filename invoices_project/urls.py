@@ -27,5 +27,9 @@ urlpatterns = [
     path('search_services/', views.services_search, name='search_services'),
     path('update_invoice/<str:pk>/', views.update_invoice, name="update_invoice"),
     path('delete_invoice/<str:pk>/', views.delete_invoice, name="delete_invoice"),
+    path('add_expense/', views.add_expense, name='add_expense'),
+    path('list_expense/', views.list_expense, name='list_expense'),
+    path('update_expense/<str:pk>/', views.update_Expense, name="update_expense"),
+    path('delete_expense/<str:pk>/', views.delete_Expense, name="delete_expense"),
 
 ]

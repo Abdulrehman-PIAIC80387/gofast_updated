@@ -33,3 +33,14 @@ class services(models.Model):
 	def __str__(self):
 		return self.service_name
 
+
+
+class Expense(models.Model):
+    
+	expense_name = models.CharField('Expense name', max_length=120, default='', blank=True, null=True)
+	expense_number = models.IntegerField('Expense Number ', default=0, blank=True, null=True)
+	amount = models.IntegerField('Expense Amount ', default=0, blank=True, null=True)
+	travel_date = models.DateTimeField(auto_now_add=True, auto_now=False,null=True)
+	
+	def __str__(self):
+		return self.expense_number
