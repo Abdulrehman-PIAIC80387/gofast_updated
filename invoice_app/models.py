@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 class Invoice(models.Model):
     
-	service_name = models.OneToOneField("services",on_delete=models.CASCADE,default='')
-	invoice_number = models.IntegerField(blank=True, null=True,unique=True)
+	service_name = models.ForeignKey('Services',default='', on_delete=models.CASCADE)
+	sale_number = models.IntegerField('Sale Number', default=0, blank=True,unique=True)
 	custumer_name = models.CharField('Customer Name', max_length=120, default='', blank=True, null=True)
 	
 	purchase = models.CharField('Purchase Name', max_length=120, default='', blank=True, null=True)

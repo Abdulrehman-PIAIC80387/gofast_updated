@@ -4,10 +4,10 @@ from .forms import *
 # Register your models here.
 
 class InvoiceAdmin(admin.ModelAdmin):
-   list_display = ['invoice_number']
+   list_display = ['sale_number']
    form = InvoiceForm
-   list_filter = ['invoice_number']
-   search_fields = ['invoice_number']
+   list_filter = ['sale_number']
+   search_fields = ['sale_number']
 
 
 class ExpenseAdmin(admin.ModelAdmin):

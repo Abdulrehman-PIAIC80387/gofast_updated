@@ -40,7 +40,7 @@ def list_invoice(request):
 	}
 
 	if request.method == 'POST':
-		queryset = Invoice.objects.filter(invoice_number__icontains=form['invoice_number'].value(),)
+		queryset = Invoice.objects.filter(sale_number__icontains=form['sale_number'].value(),)
 
 										
 		context = {

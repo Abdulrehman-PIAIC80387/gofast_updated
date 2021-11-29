@@ -6,10 +6,10 @@ class InvoiceForm(forms.ModelForm):
 		model = Invoice
 		fields = ['service_name', 'purchase','purchase_price', 'sale_price',
 				'profit', 'Destination', 'received',
-				'pending','invoice_number','custumer_name','phone'
+				'pending','sale_number','custumer_name','phone'
 				]
 	def clean_invoice_number(self):
-		invoice_number = self.cleaned_data.get('invoice_number')
+		invoice_number = self.cleaned_data.get('sale_number')
 		if not invoice_number:
 			raise forms.ValidationError('This field is required')
 			return invoice_number
@@ -19,7 +19,7 @@ class InvoiceForm(forms.ModelForm):
 class InvoiceSearchForm(forms.ModelForm):
 	class Meta:
 		model = Invoice
-		fields = ['invoice_number']
+		fields = ['sale_number']
 
 
 class InvoiceUpdateForm(forms.ModelForm):
@@ -27,7 +27,7 @@ class InvoiceUpdateForm(forms.ModelForm):
 		model = Invoice
 		fields = ['service_name', 'purchase','purchase_price', 'sale_price',
 				'profit', 'Destination', 'received',
-				'pending','invoice_number','custumer_name','phone'
+				'pending','sale_number','custumer_name','phone'
 				]
 
 
