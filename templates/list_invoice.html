@@ -36,7 +36,7 @@
 		</div>
 	<br>
 	<div class="table-responsive"> 
-	<table class='table' style="font-size: 12px;">
+	<table class='table' style="font-size: 12px; color:black;">
         <thead>
           <tr>
             <th>Invoice Number</th>
@@ -63,9 +63,9 @@
 			<td>{{instance.profit}}</td>
 			<td>{{instance.received}}</td>
 			<td>{{instance.pending}}</td>
-			<td type = button  style=" background-color: blue; border-radius: 10px;"><a style="color: black; font-weight: bolder;   "href="{% url 'update_invoice' instance.id %}">Update</a></td>
-			<td type = button  style="background-color: brown; border-radius: 10px;"><a style="color:black; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_invoice' instance.id %}">Delete</a></td>
-			<td type = button  style="background-color:green; border-radius: 10px;"><a style="color:black; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_invoice' instance.id %}">Print</a></td>
+			<td type = button  style=" background-color: blue; border-radius: 10px;"><a style="color: white; font-weight: bolder;   "href="{% url 'update_invoice' instance.id %}">Update</a></td>
+			<td type = button  style="background-color: brown; border-radius: 10px;"><a style="color:white; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_invoice' instance.id %}">Delete</a></td>
+			<td type = button  style="background-color:green; border-radius: 10px;"><a style="color:white; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_invoice' instance.id %}">Print</a></td>
           </tr>
       {% endfor %}
     </table>
@@ -78,24 +78,10 @@
     
     {% include 'footer.html' %}
     <!-- Bootstrap core JavaScript-->
-    <script type="text/javascript" src="{% static 'vendor\jquery\jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'vendor\bootstrap\js\bootstrap.bundle.min.js' %}"></script>
-
-
-    <!-- Core plugin JavaScript-->
-    <script type="text/javascript" src="{% static 'vendor\jquery-easing\jquery.easing.min.js' %}"></script>
-
-
-    <!-- Custom scripts for all pages-->
-    <script type="text/javascript" src="{% static 'js\sb-admin-2.min.js' %}"></script>
     
-    <!-- Page level plugins -->
-    <script type="text/javascript" src="{% static 'vendor\chart.js\Chart.min.js' %}"></script>
 
     <!-- Page level custom scripts -->
-    <script type="text/javascript" src="{% static 'js\demo\chart-area-demo.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js\demo\chart-pie-demo.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/js/all.min.js" integrity="sha512-I2eVORN4ZTPhAiP2pz5d6wQ3ScD/h7ORW4WoCsl3/neI8RSrRnBl2kW3myjTUN+J0Ml4fRT31ZLz08gQb/eo1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
 	
 	
 
