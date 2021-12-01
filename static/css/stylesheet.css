@@ -1,0 +1,37 @@
+body{
+	/*background-color: blue;*/
+}
+
+.myClass{
+	text-align: left;
+	border-width: 0;
+	border-style: solid;
+	width: 95%;
+	margin: auto;
+}
+
+.table{
+	font-size: 13px;
+	text-align: center;
+	width: 95%;
+	margin: auto;
+	text-align: center;
+}
+
+/*Make alternating colors for the table rows*/
+.table tr:nth-child(odd){
+	background: #B8CAE4
+}
+
+.table tr:nth-child(even){
+	background: #dae5f4
+}
+
+
+.success{
+	list-style: none;
+	background-color: #2e6da4;
+	color: white;
+	box-shadow: 12px 12px 12px #e61c66;
+	text-align: center;
+}
