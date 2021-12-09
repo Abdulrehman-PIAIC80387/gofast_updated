@@ -8,7 +8,13 @@ from django.contrib.auth.models import User
 
 class DateInput(forms.DateInput):
     input_type = 'date'
-
+"""
+class RadioSelect(forms.DateInput):
+   choices=[
+            (True, 'yes'),
+            (False, 'no')             
+        ]
+"""
 
 class InvoiceForm(forms.ModelForm):
 	class Meta:
@@ -35,12 +41,11 @@ class listHistorySearchForm(forms.ModelForm):
 
 
 class list_pdf(forms.ModelForm):
-	generate_invoice = forms.BooleanField(required=False)
+	generate_invoice=forms.BooleanField()
 	class Meta:
 		model = Invoice
 		fields = ['generate_invoice']
-
-
+		
 
 	
 

@@ -328,25 +328,56 @@ class ViewPDF(View):
 
 		pdf = render_to_pdf('pdf_template.html', context)
 		return HttpResponse(pdf, content_type='application/pdf')
-
+"""
 class ViewPDF_separate(View):
 
 	def get(self, request, *args, **kwargs):
+		form2 = list_pdf(request.POST or None)
+		context = {
+		          
+				   "form2":form2
+		         }
 		pk = self.kwargs.get('pk')
 		print("---------------------------")
 		print(pk)
 		print("---------------------------")
-		if request.method == 'POST':
-			form2 = list_pdf(request.POST)
-			if form2['generate_invoice'].value() == True:
-                
-				queryset = Invoice.objects.get(id=pk)
-				context = {
+		if form2['generate_invoice'].value() == True:
+			queryset = Invoice.objects.get(id=pk)
+			context = {
 		           "queryset": queryset,
 				   "form2":form2
 		         }
-				pdf = render_to_pdf_separate('pdf_template.html', context)
-				return HttpResponse(pdf, content_type='application/pdf')
+			pdf = render_to_pdf_separate('salescreen.html', context)
+			return HttpResponse(pdf, content_type='application/pdf')
+		pdf = render_to_pdf_separate('salescreen.html', context)
+		return HttpResponse(pdf, content_type='application/pdf')
+                
+				
+"""				
+def check_bullet(request, pk):
+	generate_invoice = request.POST.get('generate_invoice', None)
+	
+	
+	print("--------------------")
+	print(pk)
+	print("--------------------")
+	
+	queryset = Invoice.objects.get(id=pk)
+	form_bullet = list_pdf(instance=queryset)
+	if generate_invoice.value() == True:
+		queryset = Invoice.objects.get(id=pk)
+		form_bullet = list_pdf(instance=queryset)
+		context = {
+		          
+				   "form_bullet":form_bullet,
+				   "queryset":queryset
+		         }
+		return render(request, 'pdf_template.html', context)		
+
+	context = {
+		'form':form_bullet
+	}
+	return render(request, 'pdf_template.html', context)		
 
 		    
 		    

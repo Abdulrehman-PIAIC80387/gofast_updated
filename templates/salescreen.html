@@ -46,7 +46,8 @@
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ">
 		  
 		  <a class="dropdown-item" href="{% url 'pdf_view' %}" target="_blank" style="color:black">Print All</a>
-		  <a class="dropdown-item" href="{% url 'ViewPDF_separate' %}" style="color:black">Print Selected</a>
+		  <a class="dropdown-item" href="" style="color:black">Print Selected</a>
+		  <input type="submit" form="myform" />
 		</div>
 	  </div>
 	   
@@ -54,6 +55,7 @@
 	<table class='table' style="font-size: 12px; color:black;">
         <thead>
           <tr>
+			<th></th>
             <th>Invoice Number</th>
 			<th>Date</th>
             <th>Custumer Name</th>
@@ -67,11 +69,14 @@
 			
           </tr>
         </thead>
-		{{ form }}
+		
+		
       {% for instance in queryset %}
           <tr>
-			
-            
+			<form method="POST"  id="myform" action="{% url 'check_bullet' instance.id %}">
+				{% csrf_token %}
+			<td> <input type="checkbox" name="generate_invoice" value="{{instance.generate_invoice}}"  ></td>
+			</form>
             <td>{{instance.sale_number}}</td>
 			<td>{{instance.date}}</td>
             <td>{{instance.custumer_name}}</td>
@@ -102,7 +107,11 @@
     <!-- Page level custom scripts -->
     
 	
-	
+	<script>
+		function myFunction() {
+			var name = document.getElementById("userid").value;
+		}
+		</script>	
 
 </body>
 </html>

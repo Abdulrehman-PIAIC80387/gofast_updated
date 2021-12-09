@@ -24,6 +24,7 @@ class Invoice(models.Model):
 	received = models.IntegerField('Received', default=0, blank=True, null=True)
 	pending = models.IntegerField('Pending ', default=0, blank=True, null=True)
 	phone = models.IntegerField('Phone number', default='0', blank=True, null=True)
+	generate_invoice = models.BooleanField(default=False,blank=False)
     
 	
 	def __str__(self):

@@ -38,6 +38,6 @@ urlpatterns = [
 	path('', views.loginPage, name="login"),  
 	path('logout/', views.logoutUser, name="logout"),
     path('pdf_view/', views.ViewPDF.as_view(), name="pdf_view"),
-    path('ViewPDF_separate/', views.ViewPDF_separate.as_view(), name="ViewPDF_separate"),
+    path('check_bullet/<str:pk>/', views.check_bullet, name="check_bullet"),
 
 ]
