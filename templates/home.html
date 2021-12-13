@@ -1,0 +1,22 @@
+{% load static %}
+{% include 'navbar.html' %} 
+<head>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
+</head>
+
+<h1>{{title}}</h1>
+
+<button class="btn btn-danger">Click Me</button>
+<br><br><br>
+
+
+<div class="row">
+	<div class="col-sm-6 myClass">
+		test 1
+	</div>
+	
+	<div class="col-sm-6 myClass">
+		test2
+	</div>
+</div>
