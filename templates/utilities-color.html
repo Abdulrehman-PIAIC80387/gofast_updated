@@ -1,0 +1,47 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{title}}</title>
+	
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
+</head>
+<body  id="page-top"> 
+	<div class="container-fluid">
+	<div class="myForm">
+		<form method='POST' action=''>{% csrf_token %}
+			<div class="row">
+				<div class='col-sm-6'>
+					<div class="form-row">
+					  <div class="form-group col-md-6">
+						{{ form.expense_number|as_crispy_field }}
+						{{ form.expense_name|as_crispy_field }}
+						{{ form.remarks_expense|as_crispy_field }}
+						
+					  </div>
+					  <div class="form-group col-md-6">
+						{{ form.date|as_crispy_field }}
+						{{ form.amount|as_crispy_field }}
+						
+						
+					  </div>
+					</div>
+					
+					 
+	
+					<button type="submit" class="btn btn-primary btn-sm" > Save and update</button>
+		            
+	
+					<!-- <input type="submit" value='Submit'/>   -->
+				</div>
+			</div>
+		</form>
+	</div><!-- End myform -->
+	</div>
+	<br><br><br>
+	{% include 'footer.html' %}
+</body>
+</html>
