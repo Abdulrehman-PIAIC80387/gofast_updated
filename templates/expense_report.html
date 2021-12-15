@@ -1,0 +1,83 @@
+<head>
+    <style>
+        @page {
+            size: a4 portrait;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+            }
+            @frame content_frame {          /* Content Frame */
+                left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        }
+    </style>
+    </head>
+    
+    <body>
+        <!-- Content for Static Frame 'header_frame' -->
+        <div id="header_content">
+            <h1>Gofast Travel Agency</h1>
+        </div>
+    
+        <!-- Content for Static Frame 'footer_frame' -->
+        <div id="footer_content">(c) - page <pdf:pagenumber>
+            of <pdf:pagecount>
+        </div>
+    
+        <!-- HTML Content -->
+        <table style="color:black;  font-size: 8pt;">
+                <tr>
+                    <td>floor 1, Adress abc, sialkot</td>
+                    <td>0300123456789</td>
+                </tr>
+                <tr>
+                    <td>Sialkot punjab,</td>
+                    <td>Gofast@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>51040</td>
+                    <td>www.gofastats.com</td>
+                </tr>
+        </table>
+    
+        <hr>
+       
+    
+        <h1>  Cusomer Info </h1>
+        <table class='table' style="font-size: 12px; color:black;">
+            <thead>
+                <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+                
+                <th>Expense Number</th>
+                <th>Expense Name</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Remarks</th>
+                
+                
+              </tr>
+            </thead>
+          {% for instance in queryset %}
+          <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+                <td style="margin-left:40pt">{{instance.expense_number}}</td>
+                <td style="margin-left:12pt">{{instance.expense_name}}</td>
+                <td style="margin-left:10pt">{{instance.custumer_name}}</td>
+                <td style="margin-left:-70pt">{{instance.date}}</td>
+                <td style="margin-left:-55pt">{{instance.amount}}</td>
+                <td style="margin-left:-80pt">{{instance.remarks_expense}}</td>
+                
+
+
+              </tr>
+          {% endfor %}
+        </table>
+    
+        <hr>
+    
+        <p><strong>Total: $8878.28</strong></p>
+    </body>
+    </html>
