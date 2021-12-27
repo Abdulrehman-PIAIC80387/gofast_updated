@@ -1,0 +1,124 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+
+	<title>List of Invoices</title>
+	<head>
+	
+			<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+			<link href="{% static 'css\stylesheet.css' %}" rel="stylesheet">
+		
+	</head>
+
+	<body id="page-top">
+		{% include 'navbar.html' %}
+		<div style="width:95%;  ">
+		{% if messages %}
+				<ul class="messages">
+					   {% for message in messages %}
+							 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					   {% endfor %}
+			   </ul>
+			{% endif %}
+			</div>
+			<br> <br> <br> 
+	
+	
+	<div class="container-fluid" style="align-content: center; width: 95%;"> 
+	
+		<div class="table-responsive"> 
+			<form method="POST" >
+				{% csrf_token %}
+				<label for="Startdate">Start Date </label>
+		  <input type="date" name="startdate"/>
+		  <label for="Startdate">End Date </label>
+		  <input type="date" name="enddate"/>
+	
+		  <label for="custumer_name">custumer_name </label>
+		  
+		  <input type="text" name="custumer_name" list="custumer_name">
+		  <datalist id="custumer_name">
+			  {% for instance in queryset %}
+			<option value="{{instance.custumer_name}}">
+	
+				{% endfor %}
+		  </datalist>
+		  <button class="btn btn-light"><input  class="dropdown-item" type="submit" style="background-color:blue; color:white;" name="Filter" value="filter" style ="width: 100%; background-color: white;"/></button>
+
+
+		   <br><br>
+		   <div class="dropdown"  style="margin-left: 80px;" >
+			<button style="background-color:#4B70DC" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Report Options
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+			  
+			  <a class="dropdown-item" href="{% url 'ViewPDF_print_ledger' %}" target="_blank" style ="width: 100%; background-color: white;">Print All</a>
+			  <input  class="dropdown-item" type="submit" name="selected" value="Print Selected" style ="width: 100%; background-color: white;"/>
+			  
+
+			</div>
+		  </div></form></div>
+	<br>
+	<div class="table-responsive"> 
+	<table class='table' style="font-size: 12px; color:black;">
+        <thead>
+          <tr>
+            <th>#PNR</th>
+			<th>Date</th>
+            <th>Custumer Name</th>
+            <th>Sale Name</th>
+			<th>Sale Price</th>
+			
+			<th>Received Amount</th>
+			<th>Pending Amount</th>
+			<th>Remarks</th>
+            <th>Receiving Date</th>
+            <th>New Received</th>
+            <th>Actions/Alterations</th>
+			<th>Print</th>
+			
+          </tr>
+        </thead>
+      {% for instance in queryset %}
+          <tr>
+            <td>{{instance.sale_number}}</td>
+			<td>{{instance.date}}</td>
+            <td>{{instance.custumer_name}}</td>
+            <td>{{instance.service_name}}</td>
+            <td>{{instance.sale_price}}</td>
+			
+			<td>{{instance.received}}</td>
+			<td>{{instance.pending}}</td>
+			<td>{{instance.remarks}}</td>
+			<form method='POST'action="{% url 'update_invoice_ledger' instance.id %}" >
+				{% csrf_token %}
+            <td><input type="date" name="startdate"/></td>
+			<td ><input type="number" name="pending_added" /></td>
+			<td><input type="submit" value="Update" style="color:white; background-color:blue; height: 40px; font-weight: bolder;  border-radius: 15px"></td>
+			
+			</form>
+			<td ><button type="button" class="btn btn-success"  style=" background-color: green; border-radius: 15px"><a style="color: white; font-weight: bolder;   "href="{% url 'ViewPDF_print_leger_separte' instance.id %}">Print</a> </button></td>
+          </tr>
+      {% endfor %}
+    </table>
+    </div>
+	<br><br><br><br><br>
+	<a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    
+    {% include 'footer.html' %}
+    <!-- Bootstrap core JavaScript-->
+    
+
+    <!-- Page level custom scripts -->
+    
+	
+	
+
+</body>
+</html>
