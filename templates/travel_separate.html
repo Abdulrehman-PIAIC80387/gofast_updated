@@ -57,6 +57,7 @@
                 <th >Date Issued</th>
                 <th>Custumer Name</th>
                 <th>Sale Price</th>
+                <th>Destination</th>
                 <th style="margin-left:12px">Received Amount</th>
                 <th style="margin-left:12px">Pending Amount</th>
                 <th>Remarks</th>
@@ -73,9 +74,10 @@
                 <td style="margin-left:18pt">{{queryset.date}}</td>
                 <td style="margin-left:10pt">{{queryset.custumer_name}}</td>
                 <td style="margin-left:20pt">{{queryset.sale_price}}</td>
+                <td style="margin-left:20pt">{{queryset.Destination}}</td>
                 <td style="margin-left:30pt">{{queryset.received}}</td>
                 <td style="margin-left:30pt">{{queryset.pending}}</td>
-                <td>{{queryset.remarks}}</td>
+                <td style="margin-left:10pt">{{queryset.remarks}}</td>
                 
               </tr>
 

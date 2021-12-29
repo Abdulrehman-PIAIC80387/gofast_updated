@@ -59,7 +59,7 @@ class list_pdf(forms.ModelForm):
 class InvoiceSearchForm(forms.ModelForm):
 	class Meta:
 		model = Invoice
-		fields = ['sale_number']
+		fields = ['purchase']
 
 
 class InvoiceUpdateForm(forms.ModelForm):
@@ -80,8 +80,8 @@ class ServiceForm(forms.ModelForm):
 		model = Services
 		fields = ['service_name','remarks'
 				]
-	def clean_Expense_number(self):
-		expense_number = self.cleaned_data.get('service_name')
+	def clean_service_name(self):
+		service_name = self.cleaned_data.get('service_name')
 		if not service_name:
 			raise forms.ValidationError('This field is required')
 
@@ -104,21 +104,21 @@ class serviceSearchForm(forms.ModelForm):
 class ExpenseForm(forms.ModelForm):
 	class Meta:
 		model = Expense
-		fields = ['expense_number','amount','expense_name','remarks_expense','date'
+		fields = ['amount','expense_name','remarks_expense','date'
 				]
 		widgets = {
             'date': DateInput(),
         }
-	def clean_Expense_number(self):
-		expense_number = self.cleaned_data.get('expense_number')
-		if not expense_number:
+	def clean_Expense_name(self):
+		expense_name = self.cleaned_data.get('expense_name')
+		if not expense_name:
 			raise forms.ValidationError('This field is required')
 
 
 class ExpenseUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Expense
-		fields = ['expense_number','amount','expense_name','remarks_expense','date'
+		fields = ['amount','expense_name','remarks_expense','date'
 				]
 
 class ExpenseSearchForm(forms.ModelForm):

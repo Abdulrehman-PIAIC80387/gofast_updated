@@ -118,7 +118,7 @@ def list_invoice(request):
 	}
 
 	if request.method == 'POST':
-		queryset = Invoice.objects.filter(sale_number__icontains=form['sale_number'].value(),)
+		queryset = Invoice.objects.filter(purchase__icontains=form['purchase'].value(),)
 
 										
 		context = {
@@ -182,12 +182,16 @@ def list_invoice_search(request):
 			print(startdate)
 			print(enddate)
 			queryset = Invoice.objects.raw('select * from invoice_app_invoice where date between "'+startdate+'" and "'+enddate+'"')
-
+			pending = Invoice.objects.all().aggregate(Sum('pending'))['pending__sum'] or 0.00
+			profit = Invoice.objects.all().aggregate(Sum('profit'))['profit__sum'] or 0.00
+            
 											
 			context = {
 			"form": form,
 			"title": title,
 			"queryset": queryset,
+			"profit":profit,
+			"pending":pending
 		}
 			pdf = render_to_pdf_selected('pdf_template.html', context)
 			return HttpResponse(pdf, content_type='application/pdf')
@@ -249,7 +253,7 @@ def list_services(request):
 	}
 
 	if request.method == 'POST':
-		queryset = ServiceForm.objects.filter(service_name__icontains=form['service_name'].value(),)
+		queryset = Services.objects.filter(service_name__icontains=form['service_name'].value(),)
 
 										
 		context = {
@@ -477,12 +481,16 @@ def list_invoice_search(request):
 		print(startdate)
 		print(enddate)
 		queryset = Invoice.objects.raw('select * from invoice_app_invoice where date between "'+startdate+'" and "'+enddate+'"')
-
+		pending = Invoice.objects.all().aggregate(Sum('pending'))['pending__sum'] or 0.00
+		profit = Invoice.objects.all().aggregate(Sum('profit'))['profit__sum'] or 0.00
+        
 										
 		context = {
 		"form": form,
 		"title": title,
 		"queryset": queryset,
+		"pending":pending,
+		"profit":profit,
 	}
 		pdf = render_to_pdf_selected('pdf_template.html', context)
 		return HttpResponse(pdf, content_type='application/pdf')
@@ -596,7 +604,8 @@ def list_Travel_search(request):
 		print(custumer_name1)
 		print("---------------------helloo")
 
-
+		pending = Invoice.objects.all().aggregate(Sum('pending'))['pending__sum'] or 0.00
+		profit = Invoice.objects.all().aggregate(Sum('profit'))['profit__sum'] or 0.00
 		print(startdate)
 		print(enddate)
 		queryset = Invoice.objects.filter(
@@ -610,6 +619,8 @@ def list_Travel_search(request):
 		"form": form,
 		"title": title,
 		"queryset": queryset,
+		"pending":pending,
+		"profit":profit,
 	}
 		pdf = render_to_pdf_selected('travel_report.html', context)
 		return HttpResponse(pdf, content_type='application/pdf')

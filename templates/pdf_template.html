@@ -56,6 +56,8 @@
 			<th >Date Issued</th>
             <th>Custumer Name</th>
 			<th>Sale Price</th>
+            <th>Passenger Name</th>
+            <th>Destination</th>
 			<th style="margin-left:12px">Received </th>
 			<th style="margin-left:12px">Pending </th>
             
@@ -68,13 +70,15 @@
 			<td style="margin-left:18pt">{{instance.date}}</td>
             <td style="margin-left:10pt">{{instance.custumer_name}}</td>
             <td style="margin-left:20pt">{{instance.sale_price}}</td>
+            <td style="margin-left:30pt">{{instance.purchase}}</td>
+			<td style="margin-left:30pt">{{instance.Destination}}</td>
 			<td style="margin-left:30pt">{{instance.received}}</td>
 			<td style="margin-left:30pt">{{instance.pending}}</td>
 			
           </tr>
       {% endfor %}
     </table>
-
+  
     <hr>
 <br>
     <p style="font-size: 10pt;"><strong>Total Profit: {{pending}}</strong></p>

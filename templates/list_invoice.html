@@ -44,11 +44,13 @@
             <th>Custumer Name</th>
             <th>Sale Name</th>
 			<th>Sale Price</th>
+			<th>Destination</th>
 			<th>Purchase </th>
 			<th>Purchase Price</th>
 			<th>Profit</th>
 			<th>Received Amount</th>
 			<th>Pending Amount</th>
+			<th>Phone</th>
 			<th>Remarks</th>
             <th>Actions/Alterations</th>
 			
@@ -61,11 +63,13 @@
             <td>{{instance.custumer_name}}</td>
             <td>{{instance.service_name}}</td>
             <td>{{instance.sale_price}}</td>
+			<td>{{instance.Destination}}</td>
             <td>{{instance.purchase}}</td>
 			<td>{{instance.purchase_price}}</td>
 			<td>{{instance.profit}}</td>
 			<td>{{instance.received}}</td>
 			<td>{{instance.pending}}</td>
+			<td>{{instance.phone}}</td>
 			<td>{{instance.remarks}}</td>
 			<td type = button  style=" background-color: blue; border-radius: 10px;"><a style="color: white; font-weight: bolder;   "href="{% url 'update_invoice' instance.id %}">Update</a></td>
 			<td type = button  style="background-color: brown; border-radius: 10px;"><a style="color:white; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_invoice' instance.id %}">Delete</a></td>

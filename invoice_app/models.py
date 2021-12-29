@@ -5,13 +5,13 @@ from django.utils import timezone
 class Invoice(models.Model):
     
 	service_name = models.ForeignKey('Services',default='', on_delete=models.CASCADE)
-	sale_number =  models.CharField('Customer Name', max_length=120, default='', blank=True, null=True,unique=True)
+	sale_number =  models.CharField('PNR', max_length=120, default='', blank=True, null=True,unique=True)
 	custumer_name = models.CharField('Customer Name', max_length=120, default='', blank=True, null=True)
 	
 	purchase = models.CharField('Passenger Name', max_length=120, default='', blank=True, null=True)
 	purchase_price = models.IntegerField('Purchase Price', default=0, blank=True, null=True)
 	sale_price = models.IntegerField('Sale Price', default=0, blank=True, null=True)
-	date = date = models.DateField(null=True)
+	date = date = models.DateField("Travel Date",null=True)
 	remarks = models.CharField('Remarks', max_length=120, default='', blank=True, null=True)
 	
 	
@@ -45,7 +45,7 @@ class Services(models.Model):
 class Expense(models.Model):
     
 	expense_name = models.CharField('Expense name', max_length=120, default='', blank=True, null=True)
-	expense_number = models.IntegerField('Expense Number ', default=0, blank=True, null=True,unique=True)
+
 	amount = models.IntegerField('Expense Amount ', default=0, blank=True, null=True)
 	travel_date = models.DateTimeField(auto_now_add=True, auto_now=False,null=True)
 	date = date = models.DateField(null=True)
