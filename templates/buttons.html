@@ -1,0 +1,93 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    
+    <link href="{% static 'css\stylesheet.css' %}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+{% include 'navbar.html' %}
+<div style="width:95%;  ">
+{% if messages %}
+        <ul class="messages">
+               {% for message in messages %}
+                     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+               {% endfor %}
+       </ul>
+    {% endif %}
+    </div>
+    <br> <br> <br> 
+
+<div class="container">
+  <div class="row">
+    <div class="col" >
+    <div class="col-8" >
+      <form method='POST' action=''>{% csrf_token %}
+     
+      {{ form.service_name|as_crispy_field }}
+      {{ form.remarks|as_crispy_field }}
+       <button type="submit" class="btn btn-primary">Save / Update</button>
+      </div>
+    </div>
+    <div class="col">
+    <h3> Services list </h3>
+{% for instance in queryset %}
+
+<table class="table" style="color:black;">
+  <thead>
+    <tr>
+      
+      <th scope="col">Service Id</th>
+      <th scope="col">Service Name</th>
+      <th scope="col">Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ instance.id }}</th>
+     <td>{{ instance.service_name }}</td>
+       <td>{{ instance.remarks }}</td>
+      
+      
+     
+    </tr>
+    <div class="row">
+     
+      <td type = button  style=" background-color: blue; border-radius: 10px;"><a style="color: white; font-weight: bolder;   "href="{% url 'update_Service' instance.id %}">Update</a></td>
+			<td type = button  style="background-color: brown; border-radius: 10px;"><a style="color:white; font-weight: bolder;  border-radius: 25px;" href="{% url 'delete_service' instance.id %}">Delete</a></td>
+      
+     
+    </tr>
+    
+  </tbody>
+</table>
+    
+{% endfor %}
+
+  </h1>
+    </div>
+  </div>
+  </div>
+
+
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    
+    {% include 'footer.html' %}
+    <!-- Bootstrap core JavaScript-->
+    
+
+</body>
+
+</html>
