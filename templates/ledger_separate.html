@@ -81,9 +81,81 @@
                 
               </tr>
 
+
+              {% if queryset1 %}
+              <h1> In queryset1</h1>
+              <thead>
+                
+                <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+                <th>Receiving Date </th>
+                <th >Receiving Amount</th>
+                
+                
+                
+                
+                
+              </tr>
+            
+            </thead>
+         
+            <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+                <td style="margin-left:40pt">{{queryset1.date1}}</td>
+                <td style="margin-left:18pt">{{queryset1.received1}}</td>
+                
+                
+              </tr>
+              {% elif queryset2 %}
+<thead>
+                
+                <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+                <th>Receiving Date </th>
+                <th >Receiving Amount</th>
+                
+                
+                
+                
+                
+              </tr>
+            
+            </thead>
+         
+            <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+                <td style="margin-left:40pt">{{queryset2.date2}}</td>
+                <td style="margin-left:18pt">{{queryset2.received2}}</td>
+                
+                
+              </tr>
+              {% elif queryset3 %}
+<thead>
+                
+                <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+                <th>Receiving Date </th>
+                <th >Receiving Amount</th>
+                
+                
+                
+                
+                
+              </tr>
+            
+            </thead>
+         
+            <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+                <td style="margin-left:40pt">{{queryset3.date3}}</td>
+                <td style="margin-left:18pt">{{queryset3.received3}}</td>
+                
+                
+              </tr>
+{% else %}
+    No athletes.
+{% endif %}
+
+              
          
         </table>
     
+     
+
     <br>
         <hr>
     

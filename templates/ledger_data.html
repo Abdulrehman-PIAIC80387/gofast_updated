@@ -9,7 +9,7 @@
 	
 			<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 			<link href="{% static 'css\stylesheet.css' %}" rel="stylesheet">
-		
+			
 	</head>
 
 	<body id="page-top">
@@ -67,7 +67,7 @@
         <thead>
           <tr>
             <th>#PNR</th>
-			<th>Date</th>
+			<th>Issue Date</th>
             <th>Custumer Name</th>
             <th>Sale Name</th>
 			<th>Sale Price</th>
@@ -85,7 +85,7 @@
       {% for instance in queryset %}
           <tr>
             <td>{{instance.sale_number}}</td>
-			<td>{{instance.date}}</td>
+			<td>{{instance.travel_date}}</td>
             <td>{{instance.custumer_name}}</td>
             <td>{{instance.service_name}}</td>
 			
@@ -120,6 +120,6 @@
     
 	
 	
-
+	
 </body>
 </html>

@@ -680,26 +680,53 @@ def update_invoice_ledger(request, pk):
 	startdate = request.POST.get('startdate', None)
 	pending_added = request.POST.get('pending_added', None)
 	intpending = int(pending_added)
-	
+	received1 = intpending
 	
 	queryset = Invoice.objects.get(id=pk)
 	date_previous = queryset.travel_date
 	get_pending = queryset.pending
 	received_new = queryset.received
 	
+
+    
+
+	if queryset.received1 is 0:
+		queryset = Invoice.objects.get(id=pk)
+		queryset.received1 = intpending
+		queryset.save()
+		queryset2 = Invoice.objects.get(id=pk)
+		queryset2.date1 = startdate
+		queryset2.save()
+	elif queryset.received2 is 0:
+		queryset = Invoice.objects.get(id=pk)
+		queryset.received2 = intpending
+		queryset.save()
+		queryset2 = Invoice.objects.get(id=pk)
+		queryset2.date2 = startdate
+		queryset2.save()
+
+	else:
+		queryset = Invoice.objects.get(id=pk)
+		queryset.received3 = intpending
+		queryset.save()
+		queryset2 = Invoice.objects.get(id=pk)
+		queryset2.date3 = startdate
+		queryset2.save()
+
 	remaining = get_pending - intpending
-	updated_received = received_new + intpending
-	queryset = Invoice.objects.get(id=pk)
-	queryset.pending = remaining
-	queryset.save()
+	if queryset.pending <= 0 or remaining < queryset.pending :
+		messages.success(request, 'Pending will not Negative')
+		return redirect('/list_invoice_ledger')
+	else:
+		
+		updated_received = received_new + intpending
+		queryset = Invoice.objects.get(id=pk)
+		queryset.pending = remaining
+		queryset.save()
 
-	queryset2 = Invoice.objects.get(id=pk)
-	queryset2.travel_date = startdate
-	queryset2.save()
+	
 
-	queryset3 = Invoice.objects.get(id=pk)
-	queryset3.received = updated_received
-	queryset3.save()
+	
 
 
 
@@ -762,6 +789,7 @@ class ViewPDF_print_ledger(View):
 
 	def get(self, request, *args, **kwargs):
 		queryset = Invoice.objects.all()
+		
 		pending = Invoice.objects.all().aggregate(Sum('pending'))['pending__sum'] or 0.00
 		profit = Invoice.objects.all().aggregate(Sum('profit'))['profit__sum'] or 0.00
 		context = {
@@ -777,6 +805,32 @@ class ViewPDF_print_ledger(View):
 
 def ViewPDF_print_leger_separte(request, pk):
 	queryset =Invoice.objects.get(id=pk)
+	if queryset.received1 != 0:
+		print("------------In Received1")
+	
+		queryset1 =Invoice.objects.get(id=pk)
+		
+		context = {"queryset1": queryset1, }
+		pdf = render_to_pdf_separate('ledger_separate.html', context)
+		return HttpResponse(pdf, content_type='application/pdf')
+	elif queryset.received2 != 0:
+		print("------------In Received2")
+		queryset2 =Invoice.objects.get(id=pk)
+		
+		context = {"queryset2": queryset2, }
+		pdf = render_to_pdf_separate('ledger_separate.html', context)
+		return HttpResponse(pdf, content_type='application/pdf')
+	elif queryset.received3 != 0:
+		print("------------In Received3")
+		queryset3 =Invoice.objects.get(id=pk)
+		
+		context = {"queryset3": queryset3, }
+		pdf = render_to_pdf_separate('ledger_separate.html', context)
+		return HttpResponse(pdf, content_type='application/pdf')
+	
+
+
+
 	context = {"queryset": queryset, }
 	pdf = render_to_pdf_separate('ledger_separate.html', context)
 	return HttpResponse(pdf, content_type='application/pdf')

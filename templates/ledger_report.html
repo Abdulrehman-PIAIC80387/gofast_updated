@@ -53,11 +53,11 @@
                 <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
                 <th>#PNR </th>
                 <th >Date Issued</th>
-                <th>Custumer Name</th>
+                <th>Custumer </th>
                 <th>Sale Price</th>
-                <th>Passenger Name</th>
-                <th style="margin-left:12px">Received Amount</th>
-                <th style="margin-left:12px">Pending Amount</th>
+                <th>Passenger </th>
+                <th style="margin-left:12px">Received </th>
+                <th style="margin-left:12px">Pending </th>
                 <th>Remarks</th>
                 
               </tr>
@@ -65,6 +65,7 @@
           {% for instance in queryset %}
           <tr style="padding-top: 8pt; background-color: #F3F8FA;">
                 <td style="margin-left:40pt">{{instance.sale_number}}</td>
+                <td style="margin-left:5pt">{{instance.travel_date}}</td>
                
                 <td style="margin-left:10pt">{{instance.custumer_name}}</td>
                 <td style="margin-left:20pt">{{instance.sale_price}}</td>

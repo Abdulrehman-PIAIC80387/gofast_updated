@@ -14,9 +14,16 @@ class Invoice(models.Model):
 	date = date = models.DateField("Travel Date",null=True)
 	remarks = models.CharField('Remarks', max_length=120, default='', blank=True, null=True)
 	date = date = models.DateField("Travel Date",null=True,blank=True)
-	
 
 	
+	date1 = models.DateField(null=True,blank=True)
+	date2 = models.DateField(null=True,blank=True)
+	date3 = models.DateField(null=True,blank=True)
+	received1 = models.IntegerField('Pending ', default=0, blank=True, null=True)
+	received2 = models.IntegerField('Pending ', default=0, blank=True, null=True)
+	received3 = models.IntegerField('Pending ', default=0, blank=True, null=True)
+		
+		
 	profit = models.IntegerField('Profit', default=0, blank=True, null=True)
 	
 
