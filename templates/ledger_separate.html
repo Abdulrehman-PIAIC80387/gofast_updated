@@ -55,11 +55,11 @@
                 <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
                 <th>#PNR </th>
                 <th >Date Issued</th>
-                <th>Custumer Name</th>
+                <th>Custumer</th>
                 <th>Sale Price</th>
-                <th>Passenger Name</th>
-                <th style="margin-left:12px">Received Amount</th>
-                <th style="margin-left:12px">Pending Amount</th>
+                <th>Passenger</th>
+                <th style="margin-left:12px">First Received </th>
+               
                 <th>Remarks</th>
                 
                 
@@ -76,19 +76,20 @@
                 <td style="margin-left:20pt">{{queryset.sale_price}}</td>
                 <td style="margin-left:10pt">{{queryset.purchase}}</td>
                 <td style="margin-left:25pt">{{queryset.received}}</td>
-                <td style="margin-left:25pt">{{queryset.pending}}</td>
+                
                 <td style="margin-left:12pt">{{queryset.remarks}}</td>
                 
               </tr>
 
 
               {% if queryset1 %}
-              <h1> In queryset1</h1>
+              
               <thead>
-                
+               
                 <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
-                <th>Receiving Date </th>
-                <th >Receiving Amount</th>
+                
+                    <th style="margin-left:15pt">Received Date </th>
+                <th >Receiving </th>
                 
                 
                 
@@ -99,17 +100,39 @@
             </thead>
          
             <tr style="padding-top: 8pt; background-color: #F3F8FA;">
-                <td style="margin-left:40pt">{{queryset1.date1}}</td>
+                <td style="margin-left:20pt">{{queryset1.date1}}</td>
                 <td style="margin-left:18pt">{{queryset1.received1}}</td>
                 
                 
               </tr>
               {% elif queryset2 %}
+              <thead>
+               
+               <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+               
+                <th style="margin-left:15pt">Received Date </th>
+               <th >Receiving Amount</th>
+               
+               
+               
+               
+               
+             </tr>
+           
+           </thead>
+        
+           <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+               <td style="margin-left:20pt">{{queryset2.date1}}</td>
+               <td style="margin-left:18pt">{{queryset2.received1}}</td>
+               
+               
+             </tr>
 <thead>
                 
                 <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
-                <th>Receiving Date </th>
-                <th >Receiving Amount</th>
+                    <br><br>
+                    <th style="margin-left:15pt">Received Date </th>
+                <th >Receiving</th>
                 
                 
                 
@@ -120,17 +143,42 @@
             </thead>
          
             <tr style="padding-top: 8pt; background-color: #F3F8FA;">
-                <td style="margin-left:40pt">{{queryset2.date2}}</td>
+                <td style="margin-left:20pt">{{queryset2.date2}}</td>
                 <td style="margin-left:18pt">{{queryset2.received2}}</td>
                 
                 
               </tr>
               {% elif queryset3 %}
-<thead>
+              <thead>
+               
+               <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+               
+                <th style="margin-left:15pt">Received Date </th>
+               <th >Receiving</th>
+               
+               
+               
+               
+               
+             </tr>
+           
+           </thead>
+        
+           <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+               <td style="margin-left:20pt">{{queryset3.date1}}</td>
+               <td style="margin-left:18pt">{{queryset3.received1}}</td>
+               
+               
+             </tr>
+
+
+
+             <thead>
                 
                 <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
-                <th>Receiving Date </th>
-                <th >Receiving Amount</th>
+                    <br><br>
+                    <th style="margin-left:15pt">Received Date </th>
+                <th >Receiving</th>
                 
                 
                 
@@ -141,13 +189,38 @@
             </thead>
          
             <tr style="padding-top: 8pt; background-color: #F3F8FA;">
-                <td style="margin-left:40pt">{{queryset3.date3}}</td>
+                <td style="margin-left:20pt">{{queryset3.date2}}</td>
+                <td style="margin-left:18pt">{{queryset3.received2}}</td>
+                
+                
+              </tr>
+
+
+
+             
+<thead>
+                
+                <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+                <th style="margin-left:15pt">Received Date </th>
+                <th >Receiving</th>
+                
+                
+                
+                
+                
+              </tr>
+            
+            </thead>
+         
+            <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+
+                <td style="margin-left:20pt">{{queryset3.date3}}</td>
                 <td style="margin-left:18pt">{{queryset3.received3}}</td>
                 
                 
               </tr>
 {% else %}
-    No athletes.
+   
 {% endif %}
 
               
@@ -158,7 +231,9 @@
 
     <br>
         <hr>
+        <h1>Pending:{{queryset.pending}}</h1>
+   
     
-       
+    
     </body>
     </html>

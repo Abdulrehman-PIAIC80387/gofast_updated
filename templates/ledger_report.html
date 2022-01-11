@@ -62,7 +62,9 @@
                 
               </tr>
             </thead>
+            
           {% for instance in queryset %}
+          
           <tr style="padding-top: 8pt; background-color: #F3F8FA;">
                 <td style="margin-left:40pt">{{instance.sale_number}}</td>
                 <td style="margin-left:5pt">{{instance.travel_date}}</td>
@@ -73,9 +75,35 @@
                 <td style="margin-left:22pt">{{instance.received}}</td>
                 <td style="margin-left:22pt">{{instance.pending}}</td>
                 <td style="margin-left:12pt">{{instance.remarks}}</td>
-                
+               
               </tr>
+              {% if instance.received1 > 0 %}
+              <thead>
+                <th >Received Date</th>
+                <th >Receiving</th>
+
+                </thead>
+                <tr>
+                <td style="margin-left:12pt">{{instance.date1}}</td>
+                <td style="margin-left:12pt">{{instance.received1}}</td>
+                {% elif instance.received2 > 0 %}
+              <thead>
+                <th >Received Date</th>
+                <th >Receiving</th>
+
+                </thead>
+                <tr>
+                <td style="margin-left:12pt">{{instance.date2}}</td>
+                <td style="margin-left:12pt">{{instance.received2}}</td>
+                {% else %}
+
+              
+{% endif %}
+
+</tr>
+
           {% endfor %}
+          
         </table>
     
         <hr>

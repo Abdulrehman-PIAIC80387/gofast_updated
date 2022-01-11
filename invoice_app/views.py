@@ -790,6 +790,8 @@ class ViewPDF_print_ledger(View):
 	def get(self, request, *args, **kwargs):
 		queryset = Invoice.objects.all()
 		
+
+		
 		pending = Invoice.objects.all().aggregate(Sum('pending'))['pending__sum'] or 0.00
 		profit = Invoice.objects.all().aggregate(Sum('profit'))['profit__sum'] or 0.00
 		context = {
@@ -805,34 +807,36 @@ class ViewPDF_print_ledger(View):
 
 def ViewPDF_print_leger_separte(request, pk):
 	queryset =Invoice.objects.get(id=pk)
+	context = {"queryset":queryset }
+	pdf = render_to_pdf_separate('ledger_separate.html', context)
 	if queryset.received1 != 0:
 		print("------------In Received1")
 	
 		queryset1 =Invoice.objects.get(id=pk)
 		
-		context = {"queryset1": queryset1, }
+		context = {"queryset1": queryset1,"queryset":queryset }
 		pdf = render_to_pdf_separate('ledger_separate.html', context)
-		return HttpResponse(pdf, content_type='application/pdf')
-	elif queryset.received2 != 0:
+		print("below pdf")
+		
+	if queryset.received2 != 0:
 		print("------------In Received2")
 		queryset2 =Invoice.objects.get(id=pk)
 		
-		context = {"queryset2": queryset2, }
+		context = {"queryset2": queryset2,"queryset": queryset, }
 		pdf = render_to_pdf_separate('ledger_separate.html', context)
-		return HttpResponse(pdf, content_type='application/pdf')
-	elif queryset.received3 != 0:
-		print("------------In Received3")
+		
+	if queryset.received3 != 0:
+		print("------------In Received2")
 		queryset3 =Invoice.objects.get(id=pk)
 		
-		context = {"queryset3": queryset3, }
+		context = {"queryset3": queryset3,"queryset": queryset, }
 		pdf = render_to_pdf_separate('ledger_separate.html', context)
-		return HttpResponse(pdf, content_type='application/pdf')
+		
 	
 
 
 
-	context = {"queryset": queryset, }
-	pdf = render_to_pdf_separate('ledger_separate.html', context)
+	
 	return HttpResponse(pdf, content_type='application/pdf')
 
 from datetime import datetime
