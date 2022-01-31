@@ -1,0 +1,95 @@
+<head>
+    <style>
+        @page {
+            size: a4 portrait;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+            }
+            @frame content_frame {          /* Content Frame */
+                left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        }
+    </style>
+    </head>
+    
+    <body>
+        <!-- Content for Static Frame 'header_frame' -->
+        <div id="header_content">
+            <h3>Gofast Travel Agency</h3>
+        </div>
+    
+        <!-- Content for Static Frame 'footer_frame' -->
+        <div id="footer_content">(c) - page <pdf:pagenumber>
+            of <pdf:pagecount>
+        </div>
+    
+        <!-- HTML Content -->
+        <table>
+    		<tr>
+    			<td>Taseer Center Kutchery Road Sailkot</td>
+    			<td><em>Mobile:0333-3339621               Phone:052-4267141<em></td>
+             
+    		</tr>
+    		<tr>
+    			<td>Sialkot punjab,</td>
+    			<td>gofastats@gmail.com</td>
+    		</tr>
+    		<tr>
+    			<td>51040</td>
+    			<td>www.gofastats.com</td>
+    		</tr>
+    </table>
+    
+        <hr>
+       
+        
+        <h1>  Customer Information </h1>
+        <table class='table' style="font-size: 12px; color:black;">
+            <thead>
+                
+                <tr style="background-color: #84B0CA; font-size: 10pt; padding-top: 6pt;">
+                <th>#PNR </th>
+                <th >Date Issued</th>
+                <th>Custumer</th>
+                <th>Sale Price</th>
+                <th>Passenger </th>
+                <th>Remarks</th>
+                <th style="margin-left:12px">Received </th>
+                <th style="margin-left:12px">Pending </th>
+                
+                
+                
+                
+                
+              </tr>
+            
+            </thead>
+         
+            <tr style="padding-top: 8pt; background-color: #F3F8FA;">
+                <td style="margin-left:20pt">{{queryset.sale_number}}</td>
+                <td style="margin-left:10pt">{{queryset.date}}</td>
+                <td style="margin-left:15pt">{{queryset.custumer_name}}</td>
+                <td style="margin-left:20pt">{{queryset.sale_price}}</td>
+                <td style="margin-left:10pt">{{queryset.purchase}}</td>
+                <td style="margin-left:20pt">{{queryset.remarks}}</td>
+                <td style="margin-left:30pt">{{queryset.received}}</td>
+                <td style="margin-left:30pt">{{queryset.pending}}</td>
+                
+                
+              </tr>
+
+         
+        </table>
+    <br>
+        <hr>
+      
+    
+        <p style="font-size: 10pt;"><strong>Pending: {{queryset.pending}}</strong></p>
+        <p style="font-size: 10pt;"><strong>Received: {{queryset.received}}</strong></p>
+    </body>
+    </html>
